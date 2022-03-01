@@ -17,7 +17,9 @@ const PORT = process.env.PORT;
 connectDB();
 // baseurl for fatfarms
 app.get("/", (req, res) => {
-  res.send("Homepage");
+  res.send({
+    message: "Homepage",
+  });
 });
 // using the router for each model
 app.use("/api/v1", UsersRouter);
