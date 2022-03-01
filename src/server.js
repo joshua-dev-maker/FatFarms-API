@@ -15,6 +15,7 @@ app.use(express.json());
 
 const PORT = process.env.PORT;
 connectDB();
+
 // baseurl for fatfarms
 app.get("/", (req, res) => {
   res.send({
@@ -26,6 +27,7 @@ app.use("/api/v1", UsersRouter);
 app.use("/api/v1", AdminRouter);
 app.use("/api/v1", ProductRouter);
 app.use("/api/v1", OrderRouter);
+
 app.listen(PORT, () => {
   console.log(`server listening on http://localhost:${PORT}`);
 });
