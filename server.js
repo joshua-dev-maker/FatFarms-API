@@ -1,21 +1,19 @@
 // creating an http server
 const express = require("express");
 
-const dotenv = require("dotenv");
+const dotenv = require("dotenv").config();
 const UsersRouter = require("./src/routes/user.route");
 const AdminRouter = require("./src/routes/admin.route");
 const ProductRouter = require("./src/routes/product.route");
 const OrderRouter = require("./src/routes/order.route");
 const connectDB = require("./src/database/connection.database");
-const path = require("path");
 
 // using express as a middleware
 const app = express();
 
 app.use(express.json());
-dotenv.config({ path: "config.env" });
 
-const PORT = process.env.PORT || 6760;
+const PORT = process.env.PORT;
 connectDB();
 // baseurl for fatfarms
 app.get("/", (req, res) => {
