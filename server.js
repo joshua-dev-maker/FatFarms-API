@@ -1,7 +1,7 @@
 // creating an http server
 const express = require("express");
+require("dotenv").config();
 
-const dotenv = require("dotenv").config();
 const UsersRouter = require("./src/routes/user.route");
 const AdminRouter = require("./src/routes/admin.route");
 const ProductRouter = require("./src/routes/product.route");
