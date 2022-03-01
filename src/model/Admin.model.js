@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 
-const Admin = mongoose.Schema;
+const Schema = mongoose.Schema;
 
 //signup for new admin
-const AdminSchema = new Admin(
+const AdminSchema = new Schema(
   {
     firstName: {
       type: String,
@@ -33,7 +33,7 @@ const AdminSchema = new Admin(
   },
   { timestamps: true }
 );
-// 
+//
 
 const AdminModel = mongoose.model("Admin", AdminSchema);
 
