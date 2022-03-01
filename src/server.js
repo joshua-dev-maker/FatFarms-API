@@ -3,7 +3,7 @@ const express = require("express");
 require("dotenv").config();
 
 const UsersRouter = require("./routes/user.route");
-const AdminRouter = require("./routes/admin.route");
+const AdminRouter = require("./routes/Admin.route");
 const ProductRouter = require("./routes/product.route");
 const OrderRouter = require("./routes/order.route");
 const connectDB = require("./database/connection.database");
