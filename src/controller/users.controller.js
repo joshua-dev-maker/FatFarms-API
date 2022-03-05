@@ -1,6 +1,7 @@
 const User = require("../model/users.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { sendMail } = require("../database/sendMail");
 require("dotenv").config();
 const User_Token = process.env.User_Token;
 const { successResMsg, errorResMsg } = require("../utils/appResponse");
@@ -26,6 +27,12 @@ exports.register = async (req, res, next) => {
         )
       );
     }
+    // a check for phoneNumber length
+    if (phoneNumber.length < 11 || phoneNumber.length > 11) {
+      return next(
+        new AppError("PhoneNumber must be 11 numbers" || "invalid number", 401)
+      );
+    }
     // a check to avoid duplication of account
 
     let emailExist = await User.findOne({ email });
@@ -42,6 +49,13 @@ exports.register = async (req, res, next) => {
       password: hashPassword,
       role,
     });
+    let mailOptions = {
+      to: newUsers.email,
+      subject: "Verify Email",
+      text: `Hi ${firstName},Pls verify your email`,
+    };
+
+    await sendMail(mailOptions);
     return successResMsg(res, 201, {
       message: "account created successfully",
       newUsers,

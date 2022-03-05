@@ -47,8 +47,8 @@ exports.updateOrder = async (req, res, next) => {
 // User deleting his/her order
 exports.deleteOrder = async (req, res, next) => {
   try {
-    const { _id } = req.query;
-    const deleteOrder = await Order.find({ _id }, req.body);
+    const { _id } = req.headers;
+    const deleteOrder = await Order.find({ _id }, req.headers);
     return successResMsg(res, 200, {
       message: "order deleted successfully",
       deleteOrder,
